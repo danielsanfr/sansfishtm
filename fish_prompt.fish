@@ -17,9 +17,11 @@ function fish_prompt
   set -l normal (set_color normal)
 
   if test $last_status = 0
+      set status_indicator "$green✔︎ "
       set arrow " $green▶︎︎"
   else
       set arrow " $red▶︎︎"
+      set status_indicator "$red✗ "
   end
   set -l cwd $cyan(prompt_pwd)
 
@@ -37,6 +39,6 @@ function fish_prompt
     end
   end
 
-  echo -n -s $cwd $git_info $normal $arrow $normal ' '
+  echo -n -s $status_indicator $cwd $git_info $normal $arrow $normal ' '
 end
 
